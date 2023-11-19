@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">LeagueLift</string>
+    <string name="welcome_text">Selamat Datang, Admin !</string>
+    <string name="date">Senin, 20 Agustus 2024</string>
+    <string name="recap">Ringkasan</string>
+    <string name="total_team">Total Klub Bola</string>
+    <string name="total_match">Total Pertandingan</string>
+    <string name="menu">Menu</string>
+    <string name="news">Berita Sepak Bola Terkini</string>
+    <string name="add_club">Tambah Klub</string>
+    <string name="add_score">Masukan Skor</string>
+    <string name="Standing">Klasemen Liga</string>
+    <string name="last_match">Pertandingan Terakhir</string>
+    <string name="desc">content description</string>
+    <string name="club_name">Nama Klub</string>
+    <string name="club_city">Nama Kota</string>
+    <string name="null_club">Klub Sepak Bola Belum Ada</string>
+    <string name="null_match">Pertandingan Belum Ada</string>
+    <string name="input_club_name">Masukan nama klub</string>
+    <string name="input_club_city">Masukan lokasi klub</string>
+    <string name="submit">Simpan</string>
+</resources>
