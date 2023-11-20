@@ -64,13 +64,14 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewClub"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@color/vanila"
-            android:visibility="gone"
             tools:listitem="@layout/club_item_row" />
 
         <LinearLayout
+            android:id="@+id/empty_Message"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
