@@ -5,14 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.leaguelift.data.db.entities.Club
+import com.example.leaguelift.data.db.entities.Match
 
 @Database(
-    entities = [Club::class],
+    entities = [Club::class, Match::class],
     version = 1
 )
 abstract class ClubDatabase: RoomDatabase() {
     abstract fun getDao(): ClubDao
-
 
     companion object{
         @Volatile

@@ -19,15 +19,12 @@ interface ClubDao {
     @Query("SELECT COUNT(*) FROM club")
     fun getTotalClub(): LiveData<Int>
 
+    @Query("SELECT club_name FROM club")
+    fun getClubName(): LiveData<Array<String>>
+
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(item: Match)
 
     @Delete
     suspend fun delete(item: Match)
-
-    @Query("SELECT * FROM match")
-    fun getAllMatch(): LiveData<List<Match>>
-
-    @Query("SELECT COUNT(*) FROM match")
-    fun getTotalMatch(): LiveData<Int>
 }

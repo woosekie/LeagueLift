@@ -32,5 +32,8 @@ class MainActivity : AppCompatActivity() {
         binding.addClub.setOnClickListener{
             startActivity(Intent(this, AddClubActivity::class.java))
         }
+        binding.addMatch.setOnClickListener{
+            startActivity(Intent(this, InputMatchActivity::class.java))
+        }
     }
 }

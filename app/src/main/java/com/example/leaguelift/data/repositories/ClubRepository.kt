@@ -14,4 +14,5 @@ class ClubRepository(
 
     fun getAllClub() = db.getDao().getAllClub()
     fun getTotalClub() = db.getDao().getTotalClub()
+    fun getClubName() = db.getDao().getClubName()
 }

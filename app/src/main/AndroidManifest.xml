@@ -14,7 +14,7 @@
         android:theme="@style/Theme.LeagueLift"
         tools:targetApi="31">
         <activity
-            android:name=".InputMatchActivity"
+            android:name=".ui.InputMatchActivity"
             android:exported="false" />
         <activity
             android:name=".ui.AddClubActivity"

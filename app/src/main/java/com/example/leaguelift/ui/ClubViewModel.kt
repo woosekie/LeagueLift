@@ -19,4 +19,5 @@ class ClubViewModel(
 
     fun getAllClub() = repository.getAllClub()
     fun getTotalClub() = repository.getTotalClub()
+    fun getClubName() = repository.getClubName()
 }
