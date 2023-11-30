@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -12,15 +11,16 @@
         <entry key="..\:/ProjekAndroidStudio/LeagueLift/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1385" />
         <entry key="..\:/ProjekAndroidStudio/LeagueLift/app/src/main/res/drawable/wrapper_edit_text.xml" value="0.1385" />
         <entry key="..\:/ProjekAndroidStudio/LeagueLift/app/src/main/res/layout/activity_add_club.xml" value="0.25" />
-        <entry key="..\:/ProjekAndroidStudio/LeagueLift/app/src/main/res/layout/activity_input_match.xml" value="0.25" />
+        <entry key="..\:/ProjekAndroidStudio/LeagueLift/app/src/main/res/layout/activity_input_match.xml" value="0.2" />
         <entry key="..\:/ProjekAndroidStudio/LeagueLift/app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
         <entry key="..\:/ProjekAndroidStudio/LeagueLift/app/src/main/res/layout/club_item_row.xml" value="0.2" />
         <entry key="..\:/ProjekAndroidStudio/LeagueLift/app/src/main/res/layout/dialog_add_club.xml" value="0.25" />
         <entry key="..\:/ProjekAndroidStudio/LeagueLift/app/src/main/res/layout/match_item_row.xml" value="0.22" />
+        <entry key="..\:/ProjekAndroidStudio/LeagueLift/app/src/main/res/layout/multiple_input_item.xml" value="0.2" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="zulu-11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -1,6 +1,7 @@
 package com.example.leaguelift.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -21,8 +22,6 @@ import com.example.leaguelift.databinding.ActivityAddClubBinding
 class AddClubActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddClubBinding
-    private lateinit var builderDialog: AlertDialog.Builder
-    private lateinit var alertDialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +55,19 @@ class AddClubActivity : AppCompatActivity() {
                 override fun onAddButtonClicker(item: Club) {
                     viewModel.insert(item)
                 }
-            }).show()
+            }, viewModel ).show()
+
+//            viewModel.getClubName().observe(this, Observer { newArray ->
+//               val nameklub = newArray
+//
+//                Toast.makeText(
+//                    this,
+//                    "ini data : " + nameklub,
+//                    Toast.LENGTH_LONG
+//                ).show()
+//            })
+
+
         }
     }
 }

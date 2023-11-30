@@ -20,7 +20,7 @@ interface ClubDao {
     fun getTotalClub(): LiveData<Int>
 
     @Query("SELECT club_name FROM club")
-    fun getClubName(): LiveData<Array<String>>
+    fun getClubName(): LiveData<List<String>>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(item: Match)
