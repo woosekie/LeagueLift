@@ -19,4 +19,5 @@
     <string name="input_club_name">Masukan nama klub</string>
     <string name="input_club_city">Masukan lokasi klub</string>
     <string name="submit">Simpan</string>
+    <string name="empty_club">Klub bola tidak tersedia, harap masukkan data</string>
 </resources>

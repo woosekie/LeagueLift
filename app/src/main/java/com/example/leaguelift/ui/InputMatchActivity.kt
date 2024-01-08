@@ -2,34 +2,88 @@ package com.example.leaguelift.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.leaguelift.R
 import com.example.leaguelift.data.db.ClubDatabase
+import com.example.leaguelift.data.db.entities.Club
+import com.example.leaguelift.data.db.entities.Match
 import com.example.leaguelift.data.repositories.ClubRepository
 import com.example.leaguelift.databinding.ActivityInputMatchBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.android.synthetic.main.activity_input_match.club_1_selection
+import kotlinx.android.synthetic.main.activity_input_match.club_2_selection
+import kotlinx.android.synthetic.main.activity_input_match.score_1_selection
+import kotlinx.android.synthetic.main.activity_input_match.score_2_selection
 
 class InputMatchActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityInputMatchBinding
+    private lateinit var clubName: List<String>
+    private val selectedOptions = mutableMapOf<TextView, Int>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInputMatchBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
-        binding.club1Selection.setOnClickListener {
-//            showSelectorDialog()
+        val database = ClubDatabase(this)
+        val repository = ClubRepository(database)
+        val factory = ClubViewModelFactory(repository)
+        val viewModel = ViewModelProviders.of(this, factory).get(ClubViewModel::class.java)
+
+        viewModel.getClubName().observe(this, Observer {
+            clubName = it
+        })
+
+        setOnClickListenerForTextView(binding.club1Selection)
+        setOnClickListenerForTextView(binding.club2Selection)
+
+
+        binding.buttonSend.setOnClickListener {
+            val club1 = club_1_selection.text.toString()
+            val club2 = club_2_selection.text.toString()
+            val score1 = score_1_selection.text.toString().toInt()
+            val score2 = score_2_selection.text.toString().toInt()
+            val item = Match(
+                club1,
+                club2,
+                score1,
+                score2
+            )
+            if (club1 != "Klub 1" && club2 != "Klub 2") {
+                if(score_1_selection.text.isNotEmpty() && score_2_selection.text.isNotEmpty()){
+                    viewModel.insert(item)
+                } else {
+                    Toast.makeText(this, "Harap masukan skor pertandingan", Toast.LENGTH_LONG).show()
+                }
+            } else {
+                Toast.makeText(this, "Harap masukan klub yang bertanding", Toast.LENGTH_LONG).show()
+            }
         }
 
-        binding.addClub.setOnClickListener{
+
+        binding.addClub.setOnClickListener {
             addView()
         }
 
+    }
+
+    private fun setOnClickListenerForTextView(textView: TextView) {
+        textView.setOnClickListener {
+            if (clubName.isEmpty()) {
+                Toast.makeText(this, getString(R.string.empty_club), Toast.LENGTH_LONG).show()
+            } else {
+                showSelectorDialog(textView, clubName)
+            }
+        }
     }
 
     private fun addView() {
@@ -48,41 +102,32 @@ class InputMatchActivity : AppCompatActivity() {
         binding.layoutVertical.removeView(view)
     }
 
-//    private fun showSelectorDialog() {
-//
-//        val database = ClubDatabase(this)
-//        val repository = ClubRepository(database)
-//        val factory = ClubViewModelFactory(repository)
-//        val viewModel = ViewModelProviders.of(this, factory).get(ClubViewModel::class.java)
-//
-//        viewModel.getClubName().observe(this, Observer {
-//            var clubName = arrayOf(it)
-//            var clubNameArray = clubName[0].joinToString(",")
-//            if(clubName.count() == 0){
-//                Toast.makeText(
-//                    this,
-//                    "Klub bola tidak tersedia, harap masukkan data klub",
-//                    Toast.LENGTH_LONG
-//                ).show()
-//            } else {
-//                var selectedItemIndex = 0
-//                var selectedClub = clubName[selectedItemIndex]
-//                MaterialAlertDialogBuilder(this)
-//                    .setTitle("Pilih tim yang bertanding")
-//                    .setNeutralButton("Batal") { dialog, which ->
-//                        // Respond to neutral button press
-//                    }
-//                    .setPositiveButton("Pilih") { dialog, which ->
-//                        binding.club1Selection.setText(selectedClub.joinToString(","))
-//                    }
-//                    // Single-choice items (initialized with checked item)
-//                    .setSingleChoiceItems(selectedClub, selectedItemIndex) { dialog, which ->
-//                        selectedItemIndex = which
-//                        selectedClub = clubName[which]
-//                    }
-//                    .show()
-//
-//            }
-//        })
-//    }
+    private fun showSelectorDialog(textView: TextView, clubName: List<String>) {
+        val items = clubName.toTypedArray()
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Choose an option")
+
+        val selectedOptionIndex = selectedOptions[textView] ?: -1
+
+        builder.setSingleChoiceItems(items, selectedOptionIndex) { _, which ->
+            selectedOptions[textView] = which
+        }
+
+        builder.setPositiveButton("OK") { _, _ ->
+            val selectedOptionIndexFinal = selectedOptions[textView] ?: -1
+
+            if (selectedOptionIndexFinal != -1) {
+                val selectedValue = items[selectedOptionIndexFinal]
+                textView.text = selectedValue
+            }
+        }
+
+        builder.setNegativeButton("Cancel") { _, _ ->
+            // Do nothing or handle cancel action
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+    }
 }

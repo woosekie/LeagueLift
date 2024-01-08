@@ -16,8 +16,14 @@ interface ClubDao {
     @Query("SELECT * FROM club")
     fun getAllClub(): LiveData<List<Club>>
 
+    @Query("SELECT * FROM matches")
+    fun getAllMatch(): LiveData<List<Match>>
+
     @Query("SELECT COUNT(*) FROM club")
     fun getTotalClub(): LiveData<Int>
+
+    @Query("SELECT COUNT(*) FROM matches")
+    fun getTotalMatch(): LiveData<Int>
 
     @Query("SELECT club_name FROM club")
     fun getClubName(): LiveData<List<String>>

@@ -7,6 +7,9 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.leaguelift.ClubAdapter
+import com.example.leaguelift.MatchAdapter
 import com.example.leaguelift.data.db.ClubDatabase
 import com.example.leaguelift.data.repositories.ClubRepository
 import com.example.leaguelift.databinding.ActivityMainBinding
@@ -26,6 +29,22 @@ class MainActivity : AppCompatActivity() {
         val factory = ClubViewModelFactory(repository)
         val viewModel = ViewModelProviders.of(this, factory).get(ClubViewModel::class.java)
 
+
+        val adapter = MatchAdapter(listOf())
+
+        binding.recycleViewMatch.layoutManager = LinearLayoutManager(this)
+        binding.recycleViewMatch.adapter = adapter
+
+
+        viewModel.getAllMatch().observe(this, Observer {
+            adapter.items = it
+            adapter.notifyDataSetChanged()
+            if (adapter.items.isNotEmpty()){
+                binding.recycleViewMatch.visibility = View.VISIBLE
+                binding.emptyMessage.visibility = View.GONE
+            }
+        })
+
         val dateViewModel = ViewModelProvider(this).get(DateViewModel::class.java)
 
         dateViewModel.formattedDate.observe(this, Observer { formattedDate ->
@@ -34,6 +53,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getTotalClub().observe(this, Observer {
             binding.totalClub.text = it.toString()
+        })
+
+        viewModel.getTotalmatch().observe(this, Observer{
+            binding.totalMatch.text = it.toString()
         })
 
         binding.addClub.setOnClickListener{

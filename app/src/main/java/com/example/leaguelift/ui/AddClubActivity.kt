@@ -1,19 +1,12 @@
 package com.example.leaguelift.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.leaguelift.ClubAdapter
-import com.example.leaguelift.R
 import com.example.leaguelift.data.db.ClubDatabase
 import com.example.leaguelift.data.db.entities.Club
 import com.example.leaguelift.data.repositories.ClubRepository
@@ -56,18 +49,6 @@ class AddClubActivity : AppCompatActivity() {
                     viewModel.insert(item)
                 }
             }, viewModel ).show()
-
-//            viewModel.getClubName().observe(this, Observer { newArray ->
-//               val nameklub = newArray
-//
-//                Toast.makeText(
-//                    this,
-//                    "ini data : " + nameklub,
-//                    Toast.LENGTH_LONG
-//                ).show()
-//            })
-
-
         }
     }
 }

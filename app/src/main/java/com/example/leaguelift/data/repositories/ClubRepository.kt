@@ -13,6 +13,8 @@ class ClubRepository(
     suspend fun delete(item: Match) = db.getDao().delete(item)
 
     fun getAllClub() = db.getDao().getAllClub()
+    fun getAllMatch() = db.getDao().getAllMatch()
     fun getTotalClub() = db.getDao().getTotalClub()
+    fun getTotalMatch() = db.getDao().getTotalMatch()
     fun getClubName() = db.getDao().getClubName()
 }

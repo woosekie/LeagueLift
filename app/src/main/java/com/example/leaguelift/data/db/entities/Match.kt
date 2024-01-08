@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "matches")
 data class Match(
-    val homeClubId: Long,
-    val awayClubId: Long,
+    val homeClubId: String,
+    val awayClubId: String,
     val homeGoals: Int,
     val awayGoals: Int
 ) {
