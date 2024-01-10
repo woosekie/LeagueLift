@@ -65,5 +65,8 @@ class MainActivity : AppCompatActivity() {
         binding.addMatch.setOnClickListener{
             startActivity(Intent(this, InputMatchActivity::class.java))
         }
+        binding.standingMenu.setOnClickListener{
+            startActivity(Intent(this, StandingActivity::class.java))
+        }
     }
 }

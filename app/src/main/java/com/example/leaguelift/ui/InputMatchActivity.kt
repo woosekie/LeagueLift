@@ -50,22 +50,18 @@ class InputMatchActivity : AppCompatActivity() {
         binding.buttonSend.setOnClickListener {
             val club1 = club_1_selection.text.toString()
             val club2 = club_2_selection.text.toString()
-            val score1 = score_1_selection.text.toString().toInt()
-            val score2 = score_2_selection.text.toString().toInt()
-            val item = Match(
-                club1,
-                club2,
-                score1,
-                score2
-            )
-            if (club1 != "Klub 1" && club2 != "Klub 2") {
-                if(score_1_selection.text.isNotEmpty() && score_2_selection.text.isNotEmpty()){
-                    viewModel.insert(item)
-                } else {
-                    Toast.makeText(this, "Harap masukan skor pertandingan", Toast.LENGTH_LONG).show()
-                }
-            } else {
+            val score1 = score_1_selection.text.toString()
+            val score2 = score_2_selection.text.toString()
+            if (club1 == "Klub 1" || club2 == "Klub 2") {
                 Toast.makeText(this, "Harap masukan klub yang bertanding", Toast.LENGTH_LONG).show()
+            } else if (club1 == club2) {
+                Toast.makeText(this, "Harap masukan klub yang berbeda", Toast.LENGTH_LONG).show()
+            } else if (score1.isEmpty() || score2.isEmpty()) {
+                Toast.makeText(this, "Harap masukan skor pertandingan", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Berhasil menambahkan pertandingan baru", Toast.LENGTH_LONG).show()
+                val item = Match(club1, club2, score1.toInt(), score2.toInt())
+                viewModel.insert(item)
             }
         }
 
